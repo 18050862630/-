@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../css/reset.css">
+	<style type="text/css">
+		.userread {
+			height: 40px;
+			text-align: center;
+			line-height: 40px;
+			font-size: 40px;
+		}
+		.wrap {
+			width: 100%;
+			height: 790px;
+			background: url("../images/bg.jpg");
+		}
+		.out {
+			width: 300px;
+			margin: 0 auto;
+			padding-top: 100px;
+		}
+		.box {
+			width: 300px;
+			height: 300px;
+			margin: 10px auto;
+		}
+		.box div {
+			float: left;
+			border: 1px solid black;
+			background: url("../images/00.jpg") no-repeat;
+			background-size: 100%;
+		}
+		.message {
+			width: 100%;
+			margin-top: 20px;
+			color: blue;
+			font-size: 24px;
+		}
+		.message div {
+			line-height: 40px;
+			text-indent: 1.6em;
+		}
+		.message span {
+			padding-left: 50px;
+		}
+		.wrap .mouse {
+			background: url("../images/01.jpg") no-repeat;
+			background-size: 100%;
+		}
+		.wrap button {
+			width: 100px;
+			height: 40px;
+			margin: 20px auto;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="out">
+			<div id="userread" class="userread">当前关卡：<span></span></div>
+			<div class="message">
+				<div class="nums">目标分数:<span id="nums">3</span></div>
+				<div class="mark">当前得分:<span id="mark">0</span></div>
+				<div class="time" >倒&nbsp 计&nbsp 时:<span id="time">60</span><em> S</em></div>
+			</div>
+			<div class="box" id="box"></div>
+			<button id="btn">下个关卡</button>
+			<button id="backall">重新开始</button>
+		</div>
+	</div>
+	<script type="text/javascript">
+	var box = document.getElementById('box');
+	var userread = document.getElementById('userread').children;
+	var nums = document.getElementById("nums");
+	var mark = document.getElementById("mark");
+	var time = document.getElementById("time");
+
+	var boxWidth = 300;
+	userread[0].innerHTML = 1;
+	var levelNum = 0;
+	var levelArr = [3,4,5,6];
+	var ranNum;
+	var timer = null;
+	var timer2 = null;
+	var boxes = box.children;
+
+
+	function game() {
+		box.innerHTML = '';
+		var rowNum = levelArr[levelNum];
+		var len = rowNum * rowNum;
+		for(var i = 0; i < len; i++) {
+			box.innerHTML += '<div></div>';
+		};
+
+		timer = setInterval(timeChange, 500);
+		function timeChange() {
+			time.innerText --;
+			if(time.innerText == 0) {
+				clearInterval(timer);
+				alert("时间到了，你输啦~！");
+				time.innerText = 60;
+				mark.innerText = 0;
+				levelNum = 0;
+				userread[0].innerHTML = 1;
+				game();
+			}
+			console.log(time.innerText);
+		}
+
+		for(var i = 0; i < len; i++) {
+			boxes[i].style.width = boxWidth / rowNum - 2 + 'px';
+			boxes[i].style.height = boxWidth / rowNum - 2 + 'px';
+
+			timer2 = setInterval(mouseShow, 3000);
+			function mouseShow() {
+				for( var i = 0; i < len; i++) {
+					boxes[i].className = '';
+					boxes[i].onclick = null;
+				};
+				ranNum = Math.floor(Math.random() * (len));
+				boxes[ranNum].className = 'mouse';
+				boxes[ranNum].onclick = change; 
+			}mouseShow();
+
+			function change() {
+				boxes.className = '';
+
+				mark.innerText = parseInt(mark.innerText) + 1;
+				if (mark.innerText == nums.innerText) {
+					alert("厉害，下一关分身给你看");
+					continuenext();
+				}
+				mouseShow();
+			}
+		};
+	}game();
+
+
+	function continuenext() {
+
+		if(timer) {
+			clearInterval(timer);
+			time.innerText = levelArr[levelNum] * 20;
+		}
+		levelNum++;
+		nums.innerText = parseInt(nums.innerText) + 5;
+		mark.innerText = 0;
+		game();
+
+		if(levelNum == levelArr.length) {
+			confirm("恭喜通关,接下来让你打不到");
+			clearInterval(timer);
+			clearInterval(timer2);
+			levelNum = 0;
+			userread[0].innerHTML = 1;
+			nums.innerText = 3;
+			time.innerText = 60;
+			game();
+		};
+
+		if(levelNum > levelArr.length) {
+		return game();
+		}
+		userread[0].innerHTML = levelNum + 1;
+	}
+	var btn = document.getElementById('btn');
+	btn.onclick = continuenext;
+	var backall = document.getElementById('backall');
+	backall.onclick = function() {
+		confirm('放弃当前游戏？');
+		levelNum = 0;
+		userread[0].innerHTML = 1;
+		game();
+	}
+	</script>
+</body>
+</html>

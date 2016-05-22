@@ -1,0 +1,50 @@
+@charset "utf-8";
+html, body {
+	height: 100%;
+	min-height: 600px;
+}
+.lyh-wrap {
+	height: 100%;
+	min-width: 800px;
+	background-color: #111;
+}
+.lyh-select {
+	height: 5%;
+	width: 100%;
+	background-color: #eee;
+}
+.lyh-selecttail {
+	float: left;
+	display: none;
+	width: 80px;
+	height: 100px;
+	padding-left: 20px;
+	background-color: #ddd;
+}
+.lyh-select span {
+	display: block;
+	width: 40px;
+	height: 100%;
+	background-color: #ddd;
+	text-align: center;
+	line-height: 100%;
+	cursor: pointer;
+}
+.lyh-game {
+	padding: 5%;
+	width: 70%;
+	height: 75%;
+	margin: 0 auto;
+	background-color: #ddd;
+}
+.lyh-gamecon {
+	height: 90%
+}
+.lyh-gamecon div {
+	float: left;
+	border: 1px solid #111;
+	background: #39f;
+}
+.lyh-display {
+	height: 10%;
+}

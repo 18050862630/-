@@ -1,0 +1,368 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>在线扫雷小游戏</title>
+	<meta name="viewport" content="width=device-width,user-scalable=no">
+	<link rel="stylesheet" href="../css/reset.css">
+	<style>
+		.select {
+			width: 480px;
+			height: 500px;
+			padding: 20px 10px 10px;
+			background: #f2f2f2;
+		}
+		.header span{
+			display: inline-block;
+			padding-left: 8px;
+			text-indent: 8px;
+			line-height: 50px;
+			font-size: 20px;
+		}
+		.close {
+			float: right;
+			width: 50px;
+			height: 50px;
+			background: url("../images/merge.png") -1050px -1764px no-repeat;
+		}
+		.con {
+			width: 440px;
+			height: 420px;
+			padding: 30px 20px 0;
+			background: #fff;
+		}
+		.con p {
+			font-size: 14px;
+		}
+		.option {
+			float: left;
+			width: 150px;
+		}
+		.fir, .sec, .thi {
+			height: 60px;
+			margin:15px 0 0 20px;
+		}
+		.fir input, .sec input, .thi input {
+			float: left;
+			width: 10px;
+			height: 50px;
+			margin-right: 10px;
+		}
+		.custom {
+			float: right;
+			width: 250px;
+		}
+		.subst {
+			float: left;
+			text-align: left;
+		}
+		.subst span {
+			display: block;
+			margin:15px 0 56px; 
+		}
+		.custom form input {
+			float: right;
+			width: 110px;
+			margin: 12px 0 5px 0 ;
+		}
+		.custom form div {
+			visibility: hidden;
+			float: right;
+			width: 100px;
+			height: 34px;
+			padding-left: 20px;
+			border: 1px solid gray;
+			line-height: 34px;
+			background: url("../images/merge.png") -849px -580px no-repeat;
+		}
+		.select button {
+			width: 60px;
+			height: 40px;
+			margin: 20px 100px 0 50px;
+		}
+		html, body {
+			height: 100%;
+			min-height: 600px;
+		}
+		.lyh-wrap {
+			visibility: hidden;
+			height: 100%;
+			min-width: 800px;
+			background-color: #111;
+		}
+		.lyh-select {
+			height: 5%;
+			width: 100%;
+			background-color: #eee;
+		}
+		.lyh-selecttail {
+			float: left;
+			display: none;
+			width: 80px;
+			height: 100px;
+			padding-left: 20px;
+			background-color: #ddd;
+		}
+		.lyh-select span {
+			display: block;
+			width: 40px;
+			height: 100%;
+			background-color: #ddd;
+			text-align: center;
+			line-height: 100%;
+			cursor: pointer;
+		}
+		.lyh-game {
+			padding: 5%;
+			width: 70%;
+			height: 75%;
+			margin: 0 auto;
+			background-color: #ddd;
+		}
+		.lyh-gamecon, .mask {
+			height: 90%;
+		}
+		.lyh-gamecon div, .mask div {
+			float: left;
+			border: 1px solid #111;
+			background: #fff;
+		}
+		.mask {
+			position: absolute;
+			width: 70%;
+		}
+		.mask div {
+			background-color: #39f;
+		}	
+		.lyh-display {
+			height: 10%;
+		}
+	</style>
+</head>
+<body>
+	<div class="select" id="select">
+		<div class="header">
+			<span>选项</span>
+			<div class="close"></div>
+		</div>
+		<div class="con">
+			<p>难度</p>
+			<div class="option" id="option">
+				<div class="fir">
+					<input type="radio" name="s">
+					<p>初级(B)</p>
+					<p>10个雷</p>
+					<p>9*9平铺网格</p>
+				</div>
+				<div class="sec">
+					<input type="radio" name="s">
+					<p>中级(I)</p>
+					<p>40个雷</p>
+					<p>12*12平铺网格</p>
+				</div>
+				<div class="thi">
+					<input type="radio" name="s">
+					<p>高级(V)</p>
+					<p>99个雷</p>
+					<p>15*15平铺网格</p>
+				</div>
+			</div>
+			<div class="custom" id="custom">
+				<div class="subst">
+					<span>高度(9-24)(H):</span>
+					<span>宽度(9-30)(W):</span>
+					<span>雷数(100-668)(M):</span>
+				</div>
+				<form action="" id="digit">
+					<input type="text">
+					<div>数值超出范围</div>
+					<input type="text">
+					<div>数值超出范围</div>
+					<input type="text">
+					<div>数值超出范围</div>
+				</form>
+			</div>
+			<button class="sure" id="sure">确定</button>
+			<button class="cancel" id="cancel">取消</button>
+		</div>
+	</div>
+	<div class="lyh-wrap" id="lyhWrap">
+		<div class="lyh-select"><span id="span">游戏</span></div>
+		<div class="lyh-selecttail" id="returnTit">
+			<a href="">新游戏</a><br>
+			<a href="">选项</a><br>
+			<a href="">退出</a>
+		</div>
+		<div class="lyh-game">
+			<div class="mask" id="mask">
+			</div>
+			<div class="lyh-gamecon" id="lyhGamecon">
+			</div>
+			<div class="lyh-display">
+				<div><span></span></div>
+				<div><span></span></div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		var select = document.getElementById("select");
+		var lyhWrap = document.getElementById("lyhWrap");
+		var getNum = document.getElementById('digit');
+		var inputVal = getNum.getElementsByTagName('input');
+		var sureNum = document.getElementById('sure');
+		var cancel = document.getElementById('cancel');
+		var warns = document.getElementById('digit').getElementsByTagName('div');
+		var lyhGamecon = document.getElementById('lyhGamecon');
+		var mask = document.getElementById('mask');
+		var regH = /^\d{1,2}$/gi;
+		var regW = /^\d{1,2}$/gi;
+		var regN = /^\d{1,3}$/gi;
+		// 选项确认按钮点击执行生成扫雷游戏函数
+		sureNum.onclick = function() {
+			var strH = inputVal[0].value;
+			var strW = inputVal[1].value;
+			var strN = inputVal[2].value;
+			var option = document.getElementById('option');
+			var opInput = option.getElementsByTagName('input');
+			for(var i = 0; i < opInput.length; i++) {
+				if(opInput[i].checked) {
+					select.style.display = "none";
+					lyhWrap.style.visibility = "visible";
+					divNum(i);
+				} else {
+					function test(regs, strs, eles, a, b) {
+						if(regs.test(strs) && a <= strs && strs <= b) {
+
+							select.style.display = "none";
+							lyhWrap.style.visibility = "visible";
+						} else {
+							eles.style.visibility = "visible";
+						}	
+					}
+					test(regH, strH, warns[0], 9, 24);
+					test(regW, strW, warns[1], 9, 30);
+					test(regN, strN, warns[2], 9, 668);
+				}
+			}	
+		}
+		// 游戏执行函数
+		function divNum(num) {
+			// 生成蒙版与有多少个扫框
+			var lenArrW = [9, 12, 15];
+			var lenArrH = [9, 12, 15];
+			var lenBoom = [10, 30, 60];
+			var len = 0;
+			var ranArr = [];
+			len = lenArrH[num] * lenArrW[num];
+			for(var i = 0; i < len; i++) {
+				lyhGamecon.innerHTML += '<div></div>';
+				mask.innerHTML += '<div></div>'
+			}
+			var mains = lyhGamecon.children;
+			var masks = mask.children;
+			for(var i = 0; i < len; i++) {
+				mains[i].style.width = Math.floor(lyhGamecon.offsetWidth / lenArrW[num]) - 2 + 'px';
+				mains[i].style.height = Math.floor(lyhGamecon.offsetHeight / lenArrH[num]) - 2 + 'px';
+				masks[i].style.width = Math.floor(lyhGamecon.offsetWidth / lenArrW[num]) - 2 + 'px';
+				masks[i].style.height = Math.floor(lyhGamecon.offsetHeight / lenArrH[num]) - 2 + 'px';
+			}		
+			// 随机生成雷区的位置，不重复生成
+			for(var i = 0; i < lenBoom[num]; i++) {
+				ranArr[i] = Math.floor(Math.random() * (len));
+				if(i > 0) {
+					for(var m = i - 1; m >= 0; m--) {
+						if(ranArr[i] == ranArr[m]) {
+							i--;
+							break;
+						}
+					}
+				}
+			}
+			for(var i = 0; i < ranArr.length; i++) {
+				mains[ranArr[i]].style.background = '#f00';
+			}
+			// 生成每个单元格的内容描述对应的雷区状况
+			for(var j = 0; j < len; j++) {
+				var number = 0;
+					for(var i = 0; i < ranArr.length; i++) {
+						if(j % lenArrW[num] - 1 >= 0) {
+							if(j - lenArrW[num] - 1 == ranArr[i]) {
+								number = number + 1;
+							}
+							if(j + lenArrW[num] - 1 == ranArr[i]) {
+								number = number + 1;
+							}
+							if(j - 1 == ranArr[i]) {
+								number = number + 1;
+							}
+						};
+						if(j % lenArrW[num] + 1 < lenArrW[num]) {	
+							if(j + 1 == ranArr[i]) {
+								number = number + 1;
+							}
+							if(j + lenArrW[num] + 1 == ranArr[i]) {
+								number = number + 1;
+							}
+							if(j - lenArrW[num] + 1 == ranArr[i]) {
+								number = number + 1;
+							}
+						};
+						if(j - lenArrW[num] == ranArr[i]) {
+							number = number + 1;
+						};
+						if(j + lenArrW[num] == ranArr[i]) {
+							number = number + 1;
+						}
+					}
+					mains[j].innerHTML = number;
+					mains[j].style.textAlign = 'center';
+			}
+			// 点击判断是否是雷区，以及对应的策略
+			var judgeValue = [];
+			for(var i = 0; i < len; i++) {
+				judgeValue.push = 'true';
+			}
+			for(var j = 0; j < len; j++) {
+				masks[j].index = j;
+				masks[j].oncontextmenu = function(e) {
+					if(judgeValue[this.index]) {
+						masks[this.index].style.background = '#000';
+						judgeValue[this.index] = false;
+						return false;
+					} else {
+						masks[this.index].style.background = '#39f';
+						judgeValue[this.index] = true;
+						return false;
+					}
+				}
+				masks[j].onclick = function() {
+					for(var i = 0; i < ranArr.length; i++) {
+						if(this.index == ranArr[i]) {
+							mask.style.display = 'none';
+							alert('game over! 刷新页面重新开始');
+						} else {
+							masks[this.index].style.visibility = 'hidden';
+						}
+					}	
+				}
+				// 判断是否全部标出“雷”的扫区
+				// function jundgeover() {
+				// 	console.log(!masks[j].style.background == "#39f");
+				// 	if(!masks[j].style.background == "#39f") {
+				// 		alert('恭喜完成，刷新页面重新开始');
+				// 	}
+				// }
+				// setInterval(jundgeover, 1000);
+			}
+		}
+		// 游戏界面选项
+		var span = document.getElementById('span');
+		var returnTit = document.getElementById('returnTit');
+		span.onclick = function() {
+			returnTit.style.display = 'block';
+		}
+
+	</script>
+</body>
+</html>
