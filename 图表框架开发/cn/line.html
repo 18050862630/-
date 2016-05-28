@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>折线图</title>
+	<link rel="stylesheet" href="../css/reset.css">
+	<style type="text/css">
+		.wrap {
+			width: 800px;
+			height: 250px;
+			margin: 0 auto;
+		}
+		h2 {
+			height: 50px;
+			text-align: center;
+			line-height: 50px;
+			font-size: 32px;
+		}
+		.hvalue {
+			float: left;
+			width: 100px;
+			height: 300px;
+		}
+		li {
+			float: left;
+			width: 100px;
+			height: 50px;
+			text-align: center;
+			line-height: 0;
+		}
+		#cav {
+			float: right;
+		}
+		.wvalue li {
+			line-height: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<h2>一周xx情况走势图</h2>
+		<ul class="hvalue">
+			<li>1000</li>
+			<li>800</li>
+			<li>600</li>
+			<li>400</li>
+			<li>200</li>
+			<li>0</li>
+		</ul>
+		<canvas id="cav" width='700' height='250'></canvas>
+		<ul class="wvalue">
+			<li>周日</li>
+			<li>周一</li>
+			<li>周二</li>
+			<li>周三</li>
+			<li>周四</li>
+			<li>周五</li>
+			<li>周六</li>
+		</ul>
+	</div>
+	<script src="../js/jquery-1.12.3.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var datajson1 = [{num : 400},{num : 600},{num : 750},{num : 550},{num : 300},{num : 200},{num : 250}];
+		var datajson2 = [{num : 600},{num : 200},{num : 550},{num : 550},{num : 650},{num : 400},{num : 350}];
+		var datajson3 = [{num : 200},{num : 500},{num : 150},{num : 500},{num : 550},{num : 300},{num : 200}];
+		function linechart(cav, arr) {
+			var canvas = document.getElementById(cav);
+			if(cav == null) return;
+			var ctx = canvas.getContext("2d");
+			for(var i = 1; i < 5; i++) {
+				ctx.moveTo(0, 50 * i);
+				ctx.lineTo(700, 50 * i);
+				ctx.stroke();
+			}
+			for(var i = 0; i < 8; i++) {
+				ctx.moveTo(100 * i - 50, 0);
+				ctx.lineTo(100 * i - 50, 250);
+				ctx.stroke();
+			}
+			for(var i = 0; i < arr.length; i++) {
+				ctx.beginPath();
+				ctx.moveTo(100 * (i + 1) - 50, (1000 - arr[i].num) / 4);
+				ctx.font = "20px";
+				ctx.fillText(arr[i].num, 0, 0);
+				if(i >= 1) {
+					ctx.lineTo(100 * i - 50, (1000 - arr[i - 1].num) / 4);
+				}
+				ctx.closePath();
+				ctx.stroke();
+			}
+		}
+		linechart('cav', datajson1);
+		linechart('cav', datajson2);
+		linechart('cav', datajson3);
+	</script>
+</body>
+</html>
