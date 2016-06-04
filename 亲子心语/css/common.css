@@ -1,0 +1,32 @@
+@charset "utf-8";
+.wrap {
+	width: 100%;
+	
+}
+.sub {
+	width: 1000px;
+	margin: 0 auto;
+}
+.logo {
+	display: block;
+	width: 1000px;
+	height: 60px;
+	background: url("../images/line.jpg") -1px 0px no-repeat;
+	background-size: 100%;
+}
+.nav {
+	width: 1000px;
+	height: 46px;
+	background: #8DD4DF;
+}
+.nav a {
+	text-decoration: none;
+	display: inline-block;
+	line-height: 46px;
+	padding: 0 18px;
+	font-size: 18px;
+	color: #fff;
+}
+.nav a:hover {
+	color: black;
+}
