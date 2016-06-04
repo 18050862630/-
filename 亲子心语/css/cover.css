@@ -1,0 +1,56 @@
+html, body {
+    max-height: 800px;
+    background: url("../images/bg.jpg") 0 0 repeat;
+}
+.show-pic {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    margin-left: -250px;
+    -webkit-transform-style: preserve-3d;
+}
+.show-pic div {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 280px;
+    height: 180px;
+    margin-left: -160px;
+    margin-top: 500px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+}
+.show-pic div img {
+    width: 100%;
+    height: 100%;
+}
+.go {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    width: 1050px;
+    height: 100px;
+    margin-left: -525px;
+    border: 1px solid skyblue;
+    background: #F3D8DF;
+    line-height: 100px;
+    text-align: center;
+    font-size: 78px;
+    cursor: pointer;
+}
+.go a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #7B78FF;
+    text-decoration: none;
+}
+.go:hover {
+    background: pink;
+} 
+.go:hover a {
+    color: red;
+}
