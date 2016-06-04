@@ -1,22 +1,325 @@
-.tabs {
-    height: 620px;
-}
-.word-con, .photo-con, .happy-con {
+
+.thing-con, .photo-con, .happy-con {
+    display: none;
     width: 980px;
     padding: 10px;
     box-shadow: inset 0 0 0 2px #ccc;
 }
+
+/*趣事  样式*/
+.thing-con {
+    display: block;
+}
+.tits .thing {
+    color: gold;
+    background: #778daa;
+}
 .cons h2 {
     height: 40px;
-    line-height: 40px;
-    font-size: 22px;
+    border-bottom: 1px solid #ccc;
     color: #AF7AB2;
+    line-height: 40px;
+    font-size: 30px;
 }
 .out {
+    float: left;
     overflow: hidden;
-    width: 590px;
-    height: 560px;
+    width: 600px;
+    border-right: 1px solid #ccc;
 }
-.out div {
+.out dl {
+    float: left;
+    width: 285px;
+    height: 350px;
+    margin: 20px 5px;
+}
+.out dl dt img {
+    width: 100%;
+    height: 250px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.out dl dd p {
+    overflow: hidden;
+    height: 64px;
+    font-size: 16px;
+}
+.more {
+    float: right;
+    margin-top: 5px;
+    color: red;
+}
+.out dl dd p a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+.out dl dd p a:hover {
+    color: red;
+}
 
+/*创建趣事  样式*/
+.create {
+    float: left;
+    width: 358px;
+    padding: 10px;
+}
+.create h3 {
+    height: 34px;
+    color: #AF7AB2;
+    line-height: 34px;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.create textarea {
+    width: 100%;
+    background: #eee;
+    color: #39f;
+    text-indent: 2em;
+    font-size: 18px;
+}
+.add {
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+    color: #39f;
+    font-size: 16px;
+}
+.doadd {
+    margin-top: 20px;
+    width: 358px;
+    height: 60px;
+    color: green;
+    background: #ccf;
+    line-height: 60px;
+    text-align: center;
+    font-size: 32px;
+    cursor: pointer;
+}
+.doadd:hover {
+    width: 356px;
+    height: 58px;
+    line-height: 58px;
+    border: 1px solid #39f;
+    background: #fcc;
+}
+
+/*相册  样式*/
+.photos {
+    float: left;
+    width: 160px;
+    border-right: 1px solid #ccc;
+}
+.photos h3 {
+    height: 36px;
+    line-height: 36px;
+    font-size: 22px;
+    color: #39f;
+}
+.photos ul li {
+    height: 100px;
+    margin-top: 30px;
+    background: url("../images/p_1.png") center no-repeat;
+    cursor: pointer;
+}
+.photos ul li:nth-child(2) {
+    background: url("../images/p_2.png") center no-repeat;
+}
+.photos ul li:nth-child(3) {
+    background: url("../images/p_3.png") center no-repeat;
+}
+.photos ul li p {
+    height: 100px;
+    color: gray;
+    line-height: 100px;
+    font-size: 18px;
+}
+.chioce {
+    border-radius: 5px;
+    border: 1px solid #39f;
+}
+/*图片展示  样式*/
+.show {
+    float: left;
+    width: 800px;
+    margin-left: 15px;
+}
+.ch-ph {
+    display: none;
+}
+.show div:nth-child(1) {
+    display: block;
+}
+.show-out {
+    position: relative;
+    overflow: hidden;
+    width: 800px;
+    margin: 10px auto;
+}
+.picss {
+    position: relative;
+    display: block;
+    width: 800px;
+    height: 352px;
+}
+.our-btn {
+    position: absolute;
+    display: block;
+    top: 157px;
+    width: 760px;
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    padding: 0 18px;
+    z-index: 500;
+}
+.our-btnl {
+    float: left;
+    width: 42px;
+    height: 42px;
+    background: url("../images/index.png") -282px -8px no-repeat;
+}
+.our-btnr {
+    float: right;
+    width: 42px;
+    height: 42px;
+    background: url("../images/index.png") -228px -8px no-repeat;
+}
+.our-btnl:hover {
+    background: url("../images/index.png") -282px -55px no-repeat;
+}
+.our-btnr:hover {
+    background: url("../images/index.png") -228px -55px no-repeat;
+}
+.show-out img {
+    position: absolute;
+    display: none;
+    width: 800px;
+    height: 352px;
+}
+.min-pics {
+    margin: 0 auto;
+}
+.min-pics div {
+    position: relative;
+    float: left;
+    width: 200px;
+}
+.min-pics img {
+    float: left;
+    width: 100%;
+    height: 200px;
+    -webkit-user-select: none;
+    cursor: pointer;
+    cursor: hand;
+}
+.min-pics p {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.7;
+}
+.min-pics span {
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    display: block;
+    width: 100%;
+    color: blue;
+    text-align: center;
+    line-height: 35px;
+    font-size: 18px;
+    z-index: 20;
+}
+.add-pic {
+    float:left;
+    width: 100%;
+    height: 304px;
+    margin: 20px auto;
+    border-top: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+}
+.manage {
+    float: left;
+    width: 160px;
+    height: 304px;
+    border-right: 1px solid #ccc;;
+}
+.manage p {
+    height: 60px;
+    line-height: 30px;
+    font-size: 24px;
+}   
+.manage p span {
+    display: block;
+    height: 30px;
+    padding-right: 10px;
+    color: blue;
+    text-align: right;
+}
+.manage div {
+    width: 120px;
+    height: 50px;
+    margin: 0 auto;
+    border-radius: 5px;
+    background: orange;
+    line-height: 50px;
+    text-align: center;
+    font-size: 22px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+.manage div:hover {
+    color: blue;
+}
+
+/*语录  开始*/
+.words ul {
+    margin: 20px 0;
+    border-bottom: 1px solid #ccc;
+}
+.words p {
+    border-bottom: 1px dotted black;
+    line-height: 60px;
+    font-size: 14px;
+    color: blue;
+}
+.add-word {
+    height: 130px;
+    border-bottom: 1px solid #ccc;
+}
+.add-word h3 {
+    height: 36px;
+    line-height: 36px;
+    font-size: 22px;
+    color: #39f;
+}
+.add-word textarea {
+    float: left;
+    width: 600px;
+    height: 70px;
+    color: green;
+    text-indent: 2em;
+    font-size: 16px;
+    background: #eee;
+}
+.sure {
+    float: left;
+    width: 120px;
+    height: 50px;
+    margin-top: 10px;
+    margin-left: 50px;
+    border-radius: 5px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 24px;
+    background: orange;
+    cursor: pointer;
+}
+.sure:hover {
+    color: blue;
 }

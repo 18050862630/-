@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>亲子纸飞机</title>
+	<meta name="viewport" content="width=device-width,user-scalable=no">
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="../css/common.css">
+	<link rel="stylesheet" href="../css/parson-place.css">
+	<style></style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="sub">
+			<a href="" class="logo"></a>
+			<div class="nav-out">
+				<div class="nav">
+					<a href="index.html" title="首页">首页</a>
+					<a href="family.html" title="我们的家">我们的家</a>
+					<a class="select" href="parson-plane.html" title="亲子纸飞机">亲子纸飞机</a>
+					<a href="show.html" title="好友亲子秀">好友亲子秀</a>
+				</div>
+			</div>
+		</div>
+		<div class="tabs">
+            <div class="planecon">
+            	<span></span>
+            	<span></span>
+            	<span></span>
+            	<span></span>
+            	<span></span>
+            	<span></span>
+            	<span></span>
+            	<span></span>
+            </div>
+            <div class="addplane">添加纸飞机</div>
+            <div class="showtext">
+            	<h2>捕获一只飞机<span></span></h2>
+            	<p>宝宝今天好帅</p>
+            	<p>宝宝今天好帅</p>
+            	<p>宝宝今天好帅</p>
+            	<p>宝宝今天好帅</p>
+            	<p>利利就不评价了，说他帅，不满意的话我还是要被打!最后只能强迫自己说他超级帅</p>
+            	<p>宝宝今天好帅</p>
+            	<p>宝宝今天好帅</p>
+            	<p>宝宝今天好帅</p>
+            </div>
+            <div class="addplanecon">
+            	<h2>星语心愿<span></span></h2>
+            	<div class="textcon">
+            		<div><textarea name="" id="" cols="30" rows="10" placeholder="写点什么，什么都好，回忆就是那么的美好"></textarea></div>
+            		<span class="btn">放飞纸飞机<span>飞机没有油，不想飞</span></span>
+            	</div>
+            </div>
+        </div>
+	</div>
+	<script src="../js/jquery-1.12.3.js"></script>
+	<script>
+		// 初始化纸飞机的位置（随机）
+		var posX = 0,
+			posY = 0;
+		var numSpan = $('.planecon span').length;
+		for(var i = 0; i < numSpan; i++) {
+			posX = Math.floor(Math.random() * 700);
+			posY = Math.floor(Math.random() * 400);
+			$('.planecon span').eq(i).css({
+				'left' : posX + 'px',
+				'top' : posY + 'px'
+			})
+		}
+		// hover 特效
+		$('.addplane, .btn').hover(function(){
+			$(this).css({
+				'background' : '#4f4',
+				'box-shadow' : '0 0 1px 1px #0f0'
+			})
+		}, function(){
+			$(this).css({
+				'background' : '#0f0',
+				'box-shadow' : '0 0 0px 0px #0f0'
+			})
+		})
+		$('.addplanecon h2 span').hover(function(){
+			$(this).css({
+				'opacity' : '0.6'
+			})
+		},function(){
+			$(this).css({
+				'opacity' : '1'
+			})
+		})
+		$('.planecon span').hover(function(){
+			$(this).css({
+				'width' : '70px',
+				'height' : '50px'
+			})
+		},function(){
+			$(this).css({
+				'width' : '50px',
+				'height' : '30px'
+			})
+		})
+		// 添加纸飞机，打开书写区
+		$('.addplane').on('click', function() {
+			$('.addplanecon').css({
+				'display' : 'block'
+			})
+		})
+		// 关闭纸飞机书写区
+		$('.addplanecon h2 span').on('click', function() {
+			$('.addplanecon').css({
+				'display' : 'none'
+			})
+		})
+		$('.showtext h2 span').on('click', function() {
+			$('.showtext').css({
+				'display' : 'none'
+			})
+			$('.showtext p').css({
+				'display' : 'none'
+			})
+		})
+		// 温馨提示
+		$('.btn').on('click', function() {
+			if($('.textcon textarea').val() == '') {
+				$('.btn span').css({
+					'display' : 'block'
+				})
+			} else {
+				$('.addplanecon').css({
+					'display' : 'none'
+				})
+				$('.showtext').append('<p>' + $('.textcon textarea').val() + '</p>');
+				$('.planecon').append('<span></span>');
+				$('.planecon span').eq(numSpan).css({
+					'position' : 'absolute',
+					'left' : '250px',
+					'top' : '400px',
+					'background' : 'url("../images/plane.png") 0 0 no-repeat',
+					'background-size' : '100% 100%'
+				})
+				$('.planecon span').eq(numSpan).animate({
+					'left' : Math.floor(Math.random() * 700) + 'px',
+					'top' : Math.floor(Math.random() * 400) + 'px'
+				}, 1000)
+				// 更新节点
+				$('.textcon textarea').val('');
+				numSpan++;
+				// 引进抓纸飞机
+				chuw();
+			}
+		})
+		$('.addplanecon textarea').on('click', function() {
+			$('.btn span').css({
+				'display' : 'none'
+			})
+		})
+		// 抓纸飞机
+		function chuw() {
+			$('.planecon span').on('click', function() {
+				$('.showtext').css({
+					'display' : 'block'
+				})
+				$('.showtext p').eq($(this).index()).css({
+					'display' : 'block'
+				})
+			})
+		}
+		chuw();
+	</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+@charset "utf-8";
+/*纸飞机内容背景*/
+.tabs {
+	position: relative;
+	width: 700px;
+	padding: 100px 150px;
+	background: url('../images/planebg.jpg') 0 0 no-repeat;
+	background-size: 100% 100%;
+}
+.planecon {
+	position: relative;
+	width: 100%;
+	height: 400px;
+}
+.planecon span {
+	position: absolute;
+	width: 50px;
+	height: 30px;
+	background: url("../images/plane.png") 0 0 no-repeat;
+	background-size: 100% 100%;
+	cursor: pointer;
+}
+.addplane, .btn, .addplanecon h2, .showtext h2 {
+	display: block;
+	width: 150px;
+	height: 40px;
+	margin: 0 auto;
+	line-height: 40px;
+	text-align: center;
+	font-size: 24px;
+	background-color: #0f0;
+}
+.addplane, .btn {
+	position: relative;
+	margin-top: 20px;
+	cursor: pointer;
+}
+/*纸飞机内书写的内容*/
+.showtext, .showtext p {
+	display: none;
+	font-size: 18px;
+	background-color: #fff;
+}
+.showtext {
+	position: absolute;
+	left: 250px;
+	top: 150px;
+	width: 500px;
+	height: 360px;
+}
+/*添加纸飞机的书写区*/
+.addplanecon {
+	display: none;
+	position: absolute;
+	left: 250px;
+	top: 150px;
+	width: 500px;
+	height: 362px;
+	background-color: #fff;
+}
+.addplanecon h2, .showtext h2 {
+	width: 100%;
+	height: 40px;
+}
+.addplanecon h2 span, .showtext h2 span {
+	float: right;
+	width: 40px;
+	height: 40px;
+	background: url('../images/close.png') 0px -5px no-repeat;
+	cursor: pointer;
+}
+.addplanecon div {
+	width: 498px;
+	height: 258px;
+	border: 1px solid #ccc;
+}
+.addplanecon textarea {
+	width: 100%;
+	height: 258px;
+	border: 0;
+	font-size: 18px;
+	outline: none;
+	resize: none;
+}
+.btn span {
+	position: absolute;
+	top: -20px;
+	left: -25px;
+	display: none;
+	width: 200px;
+	color: #f00;
+	font-size: 14px;
+	text-align: center;
+}
