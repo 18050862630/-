@@ -7,10 +7,6 @@ html, body {
 .wrap {
 	width: 100%;
 }
-.sub {
-	width: 100%;
-	margin: 0 auto;
-}
 .logo {
 	display: block;
 	width: 100%;
@@ -49,7 +45,7 @@ html, body {
 .tabs {
     width: 1000px;
     margin: 20px auto;
-    background: url("../images/bac.png") 0 0 repeat;
+    background: #fff url("../images/bac.png") 0 0 repeat;
 }
 .tits {
    box-shadow: inset 2px 0 4px #ccc;
