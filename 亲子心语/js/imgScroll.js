@@ -6,9 +6,8 @@ function ScrollCircle(obj,everyDeg,transZ,num,orient,speed,startDeg){
     this.orient =  orient;
     this.speed = speed;
     this.startDeg = startDeg;
-
     if (!this.speed) {
-     this.speed = 20;
+     this.speed = 16;
     };
     if(!this.startDeg) {
       this.startDeg = 0;
