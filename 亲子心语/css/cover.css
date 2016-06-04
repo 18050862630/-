@@ -1,6 +1,7 @@
 html, body {
     max-height: 800px;
-    background: url("../images/bg.jpg") 0 0 repeat;
+    background: url("../images/bg3.jpg") 0 0 repeat;
+    background-size: 100% auto;
 }
 .show-pic {
     position: absolute;
@@ -33,7 +34,7 @@ html, body {
 }
 .go {
     position: fixed;
-    bottom: 0;
+    bottom: 10px;
     left: 50%;
     width: 1050px;
     height: 100px;
