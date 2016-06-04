@@ -48,7 +48,6 @@ html, body {
 /*内容框架*/
 .tabs {
     width: 1000px;
-    height: 600px;
     margin: 20px auto;
     background: url("../images/bac.png") 0 0 repeat;
 }
