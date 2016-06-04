@@ -1,0 +1,9 @@
+.wrap {
+    height: 100%;
+    background: pink;
+}
+.show-pic {
+    width: 1280px;
+    height: 600px;
+    margin: 0 auto;
+}
