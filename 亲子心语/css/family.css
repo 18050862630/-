@@ -1,0 +1,22 @@
+.tabs {
+    height: 620px;
+}
+.word-con, .photo-con, .happy-con {
+    width: 980px;
+    padding: 10px;
+    box-shadow: inset 0 0 0 2px #ccc;
+}
+.cons h2 {
+    height: 40px;
+    line-height: 40px;
+    font-size: 22px;
+    color: #AF7AB2;
+}
+.out {
+    overflow: hidden;
+    width: 590px;
+    height: 560px;
+}
+.out div {
+
+}
